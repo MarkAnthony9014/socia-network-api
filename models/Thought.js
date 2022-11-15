@@ -12,6 +12,7 @@ const ReactionSchema = new Schema(
             type: String,
             required: true,
             trim: true,
+            maxLength: 280
             //need a validator for a 280 character maximum
         },
         userName: {
@@ -23,8 +24,13 @@ const ReactionSchema = new Schema(
             default: Date.now,
             //get: to format the timestamp on query
         }
-    }    
-)
+    },
+    {
+        toJSON: {
+            getters: true
+        }
+    }   
+);
 
 
 
@@ -35,6 +41,8 @@ const ThoughtSchema = new Schema(
         type: String,
         required: true,
         // needs a validator to be between 1-280 characters
+        maxLength: 280,
+        minLength: 1
        },
        createdAt: {
         type: Date,
@@ -55,3 +63,7 @@ const ThoughtSchema = new Schema(
         id: false
     }
 );
+
+const Thought = model('Thought', ThoughtSchema);
+
+module.exports = Thought;
