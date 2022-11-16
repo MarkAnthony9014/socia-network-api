@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 
 const UserSchema = new Schema(
     {
-        userName: {
+        username: {
             type: String,
             required: true,
             trim: true,
@@ -12,7 +12,8 @@ const UserSchema = new Schema(
             type: String,
             required: true,
             trim: true,
-            unique: true
+            unique: true,
+            match: /.+@.+..+/,
         },
         thoughts: [
             {
