@@ -1,5 +1,7 @@
 const { Schema, model, Types } = require('mongoose');
 
+const dateFunction = require('../utils/dateFunction');
+
 
 
 const ReactionSchema = new Schema(
@@ -23,6 +25,7 @@ const ReactionSchema = new Schema(
             type: Date,
             default: Date.now,
             //get: to format the timestamp on query
+            get: createdAtVal => dateFunction(createdAtVal)
         }
     },
     {
@@ -46,8 +49,8 @@ const ThoughtSchema = new Schema(
        },
        createdAt: {
         type: Date,
-        default: Date.now
-        // get:     
+        default: Date.now,
+        get: createdAtVal => dateFunction(createdAtVal)
        },
        userName: {
         type: String,
